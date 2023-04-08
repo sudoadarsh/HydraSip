@@ -5,7 +5,7 @@ abstract class IntroductionEvent {}
 
 class GetCurrentPageEvent extends IntroductionEvent {}
 
-class SaveCurrentIndexEvent extends IntroductionEvent {
+class UpdateCurrentIndex extends IntroductionEvent {
   final int index;
-  SaveCurrentIndexEvent({required this.index});
+  UpdateCurrentIndex({required this.index});
 }

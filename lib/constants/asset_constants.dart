@@ -1,2 +1,3 @@
-class AssetConstants {
-}
+part of 'constants.dart';
+
+class AssetConstants {}

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+part of 'constants.dart';
 
 class SizeC {
   static const SizedBox spaceVertical5 = SizedBox(height: 5);

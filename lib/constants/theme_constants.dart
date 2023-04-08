@@ -30,16 +30,13 @@ class ThemeC {
         fontSize: 20.0,
         fontWeight: FontWeight.w800,
       ),
-      bodyLarge: const TextStyle(
-        color: Colors.black,
-        fontSize: 18.0,
-        fontWeight: FontWeight.normal,
-      ),
+      bodyLarge: const TextStyle(color: Colors.black, fontSize: 18.0),
       bodyMedium: const TextStyle(
         color: Colors.black,
         fontSize: 16.0,
         fontWeight: FontWeight.w300,
       ),
+      bodySmall: const TextStyle(color: Colors.black, fontSize: 14.0),
     ),
   );
 
@@ -72,15 +69,13 @@ class ThemeC {
         fontSize: 20.0,
         fontWeight: FontWeight.w800,
       ),
-      bodyLarge: const TextStyle(
-        color: Colors.white,
-        fontSize: 18.0,
-      ),
+      bodyLarge: const TextStyle(color: Colors.white, fontSize: 18.0),
       bodyMedium: const TextStyle(
         color: Colors.white,
         fontSize: 16.0,
         fontWeight: FontWeight.w300,
       ),
+      bodySmall: const TextStyle(color: Colors.white, fontSize: 14.0),
     ),
   );
 }

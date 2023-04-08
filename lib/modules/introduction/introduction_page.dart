@@ -17,11 +17,17 @@ class _IntroductionPageState extends State<IntroductionPage> {
   /// The Introduction page bloc.
   late final IntroductionBloc _introductionBloc;
 
+  /// The TextEditingControllers.
+  late final TextEditingController _weightController;
+  late final TextEditingController _heightController;
+
   @override
   void initState() {
     super.initState();
     _introductionBloc = IntroductionBloc();
     _introductionBloc.add(GetCurrentPageEvent());
+    _weightController = TextEditingController();
+    _heightController = TextEditingController();
   }
 
   @override
@@ -29,6 +35,8 @@ class _IntroductionPageState extends State<IntroductionPage> {
     super.dispose();
     _pageViewController.dispose();
     _introductionBloc.close();
+    _weightController.dispose();
+    _heightController.dispose();
   }
 
   @override
@@ -42,12 +50,16 @@ class _IntroductionPageState extends State<IntroductionPage> {
             if (state is LoadingPageState) {
               return const Center(child: CircularProgressIndicator.adaptive());
             } else if (state is GetPageIndexState) {
-              _pageViewController = PageController(
-                initialPage: state.index
-              );
+              _pageViewController = PageController(initialPage: state.index);
               return PageView(
                 controller: _pageViewController,
-                children: const [GetStartedPage()],
+                children: [
+                  HwPage(
+                    weightController: _weightController,
+                    heightController: _heightController,
+                  ),
+                  GetStartedPage(onGetStarted: _getStarted),
+                ],
               );
             }
             return const SizedBox.shrink();
@@ -55,5 +67,11 @@ class _IntroductionPageState extends State<IntroductionPage> {
         ),
       ),
     );
+  }
+
+  // --------------------------- Class methods ---------------------------------
+
+  void _getStarted() {
+    _introductionBloc.add(UpdateCurrentIndex(index: 1));
   }
 }

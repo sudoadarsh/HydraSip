@@ -19,7 +19,8 @@ class IntroductionBloc extends Bloc<IntroductionEvent, IntroductionState> {
     });
 
     /// To save the current index of the page locally.
-    on<SaveCurrentIndexEvent>((event, emit) async {
+    on<UpdateCurrentIndex>((event, emit) async {
+      emit(GetPageIndexState(index: event.index));
       await _updateCurrentIndex(event.index);
     });
   }

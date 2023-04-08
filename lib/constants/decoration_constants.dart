@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'constants.dart';
 
 class DecorationC {
   /// BoxDecoration with rounded top or bottom corners.
