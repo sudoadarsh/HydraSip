@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hydra_sip/modules/dashboard/dashboard.dart';
+import 'package:hydra_sip/modules/introduction/introduction_page.dart';
 
 class RouteConstants {
   static const String dashboard = 'dashboard';
+  static const String introduction = 'introduction';
 }
 
 class GenerateRoute {
@@ -12,6 +14,9 @@ class GenerateRoute {
     switch (settings.name) {
       case RouteConstants.dashboard:
         page = const DashboardPage();
+        break;
+      case RouteConstants.introduction:
+        page = const IntroductionPage();
         break;
       default:
         page = const Placeholder();
