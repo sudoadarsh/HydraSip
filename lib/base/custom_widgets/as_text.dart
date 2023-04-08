@@ -1,14 +1,15 @@
 part of 'custom_widgets.dart';
 
 class ASText extends StatelessWidget {
-  const ASText({
+  const ASText(
+    this.text, {
     Key? key,
-    required this.text,
     this.color,
     this.fontWeight,
     this.fontSize,
     this.textAlign,
-    this.fontStyle, this.maxLines,
+    this.fontStyle,
+    this.maxLines, this.style,
   }) : super(key: key);
 
   final String text;
@@ -17,6 +18,8 @@ class ASText extends StatelessWidget {
   final double? fontSize;
   final int? maxLines;
   final TextAlign? textAlign;
+  final TextStyle? style;
+
   /// Normal vs Italic.
   final FontStyle? fontStyle;
 
@@ -25,7 +28,7 @@ class ASText extends StatelessWidget {
     return Text(
       text,
       maxLines: maxLines,
-      style: TextStyle(
+      style: style ?? TextStyle(
         fontSize: fontSize,
         fontWeight: fontWeight,
         fontStyle: fontStyle,

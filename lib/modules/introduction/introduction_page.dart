@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydra_sip/modules/introduction/logic/introduction_bloc.dart';
+import 'package:hydra_sip/modules/introduction/widgets/intro_page_widgets.dart';
 
 class IntroductionPage extends StatefulWidget {
   const IntroductionPage({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class IntroductionPage extends StatefulWidget {
 
 class _IntroductionPageState extends State<IntroductionPage> {
   /// The page view controller.
-  late final PageController _pageViewController;
+  late PageController _pageViewController;
 
   /// The Introduction page bloc.
   late final IntroductionBloc _introductionBloc;
@@ -20,6 +21,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
   void initState() {
     super.initState();
     _introductionBloc = IntroductionBloc();
+    _introductionBloc.add(GetCurrentPageEvent());
   }
 
   @override
@@ -34,14 +36,21 @@ class _IntroductionPageState extends State<IntroductionPage> {
     return Scaffold(
       body: SafeArea(
         child: BlocBuilder(
+          buildWhen: (prev, current) => prev != current,
+          bloc: _introductionBloc,
           builder: (context, state) {
             if (state is LoadingPageState) {
               return const Center(child: CircularProgressIndicator.adaptive());
+            } else if (state is GetPageIndexState) {
+              _pageViewController = PageController(
+                initialPage: state.index
+              );
+              return PageView(
+                controller: _pageViewController,
+                children: const [GetStartedPage()],
+              );
             }
-            return PageView(
-              controller: _pageViewController,
-              children: [Container()],
-            );
+            return const SizedBox.shrink();
           },
         ),
       ),

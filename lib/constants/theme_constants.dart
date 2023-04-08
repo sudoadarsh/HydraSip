@@ -3,6 +3,7 @@ part of 'constants.dart';
 class ThemeC {
   /// The lightTheme.
   static final lightTheme = ThemeData(
+    fontFamily: 'QuickSand',
     primarySwatch: Colors.lightBlue,
     brightness: Brightness.light,
 
@@ -22,23 +23,29 @@ class ThemeC {
       displayLarge: TextStyle(
         color: Colors.lightBlue[500],
         fontSize: 28.0,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w800,
       ),
       titleLarge: const TextStyle(
         color: Colors.black,
         fontSize: 20.0,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w800,
       ),
       bodyLarge: const TextStyle(
         color: Colors.black,
-        fontSize: 16.0,
+        fontSize: 18.0,
         fontWeight: FontWeight.normal,
+      ),
+      bodyMedium: const TextStyle(
+        color: Colors.black,
+        fontSize: 16.0,
+        fontWeight: FontWeight.w300,
       ),
     ),
   );
 
   /// The dark theme.
   static final darkTheme = ThemeData(
+    fontFamily: 'QuickSand',
     primarySwatch: Colors.lightBlue,
     brightness: Brightness.dark,
 
@@ -58,17 +65,21 @@ class ThemeC {
       displayLarge: TextStyle(
         color: Colors.lightBlue[200],
         fontSize: 28.0,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w800,
       ),
       titleLarge: const TextStyle(
         color: Colors.white,
         fontSize: 20.0,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w800,
       ),
       bodyLarge: const TextStyle(
         color: Colors.white,
+        fontSize: 18.0,
+      ),
+      bodyMedium: const TextStyle(
+        color: Colors.white,
         fontSize: 16.0,
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.w300,
       ),
     ),
   );

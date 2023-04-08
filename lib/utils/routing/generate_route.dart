@@ -31,7 +31,10 @@ class GenerateRoute {
           begin: const Offset(1.0, 0.0),
           end: Offset.zero,
         ).chain(CurveTween(curve: Curves.ease));
-        return SlideTransition(position: animation.drive(routeAnimation));
+        return SlideTransition(
+          position: animation.drive(routeAnimation),
+          child: child,
+        );
       },
     );
   }
