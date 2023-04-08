@@ -40,8 +40,20 @@ class SharedPref {
   }
 
   /// Get a value.
-  dynamic getValue(String key) {
-    return _pref?.get(key);
+  String? getString(String key) {
+    return _pref?.getString(key);
+  }
+  bool? getBool(String key) {
+    return _pref?.getBool(key);
+  }
+  int? getInt(String key) {
+    return _pref?.getInt(key);
+  }
+  double? getDouble(String key) {
+    return _pref?.getDouble(key);
+  }
+  List<String>? getStringList(String key) {
+    return _pref?.getStringList(key);
   }
 
   /// Remove a value.

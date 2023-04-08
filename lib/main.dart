@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydra_sip/constants/constants.dart';
 import 'package:hydra_sip/logic/theme/theme_cubit.dart';
-import 'package:hydra_sip/modules/dashboard/dashboard.dart';
+import 'package:hydra_sip/utils/routing/generate_route.dart';
 
 void main() {
   runApp(const Root());
@@ -19,7 +19,8 @@ class Root extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             theme: state.appTheme ? ThemeC.lightTheme : ThemeC.darkTheme,
-
+            onGenerateRoute: GenerateRoute.generate,
+            initialRoute: RouteConstants.introduction,
           );
         },
       ),
