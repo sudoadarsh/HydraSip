@@ -63,7 +63,10 @@ class _IntroductionPageState extends State<IntroductionPage> {
               physics: const NeverScrollableScrollPhysics(),
               controller: _pageViewController,
               children: [
-                const ActivityPage(),
+                ActivityPage(
+                  bloc: _introductionBloc,
+                  onActivityContinue: (){},
+                ),
                 // 0. The get started page.
                 GetStartedPage(onGetStarted: _getStarted),
                 // 1. Height and weight page.

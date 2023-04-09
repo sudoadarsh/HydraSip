@@ -14,6 +14,8 @@ class IntroductionBloc extends Bloc<IntroductionEvent, IntroductionState> {
 
   HeightMetrics heightMetric = HeightMetrics.feet;
   WeightMetrics weightMetrics = WeightMetrics.kg;
+  Activity activity = Activity.moderately;
+  Climate climate = Climate.hotAndDry;
 
   IntroductionBloc() : super(IntroductionInitial()) {
     /// To get the saved index of the latest page.
@@ -31,10 +33,19 @@ class IntroductionBloc extends Bloc<IntroductionEvent, IntroductionState> {
 
     /// To toggle the metrics.
     on<ToggleMetricsEvent>((event, emit) {
-      if (event.metric is HeightMetrics) {
-        heightMetric = event.metric;
-      } else {
-        weightMetrics = event.metric;
+      switch (event.metric.runtimeType) {
+        case HeightMetrics:
+          heightMetric = event.metric;
+          break;
+        case WeightMetrics:
+          weightMetrics = event.metric;
+          break;
+        case Climate:
+          climate = event.metric;
+          break;
+        case Activity:
+          activity = event.metric;
+          break;
       }
       emit(MetricsToggledState());
     });
