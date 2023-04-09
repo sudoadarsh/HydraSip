@@ -7,3 +7,4 @@ import 'package:hydra_sip/utils/water_intake_calc/water_intake_calc.dart';
 part 'get_started_page.dart';
 part 'hw_page.dart';
 part 'text_field_dropdown.dart';
+part 'activity_page.dart';

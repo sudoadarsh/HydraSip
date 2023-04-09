@@ -12,4 +12,10 @@ class StringC {
   static const String cont = 'CONTINUE';
   static const String requestHW = 'To calculate an estimate of your daily water intake, we require your height and weight.';
   static const String inches = 'Inches';
+  static const String requestActivity = 'How active are you to a day-to-day basis.';
+  static const String sedentary = 'Sedentary (little to no exercise)';
+  static const String lightlyActive = 'Lightly active (1-3 days of exercise per week)';
+  static const String moderatelyActive = 'Moderately active (3-5 days of exercise per week)';
+  static const String veryActive = 'Very active (6-7 days of exercise per week)';
+  static const String extremeActive = 'Extremely active (very intense exercise or physical job)';
 }
