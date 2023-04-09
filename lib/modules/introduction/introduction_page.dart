@@ -47,22 +47,23 @@ class _IntroductionPageState extends State<IntroductionPage> {
           buildWhen: (prev, current) => prev != current,
           bloc: _introductionBloc,
           builder: (context, state) {
-            if (state is LoadingPageState) {
+            if (state is LoadingPageState || state is IntroductionInitial) {
               return const Center(child: CircularProgressIndicator.adaptive());
             } else if (state is GetPageIndexState) {
               _pageViewController = PageController(initialPage: state.index);
-              return PageView(
-                controller: _pageViewController,
-                children: [
-                  HwPage(
-                    weightController: _weightController,
-                    heightController: _heightController,
-                  ),
-                  GetStartedPage(onGetStarted: _getStarted),
-                ],
-              );
             }
-            return const SizedBox.shrink();
+            return PageView(
+              controller: _pageViewController,
+              children: [
+                GetStartedPage(onGetStarted: _getStarted),
+                HwPage(
+                  weightController: _weightController,
+                  heightController: _heightController,
+                  bloc: _introductionBloc,
+                  onHWContinue: _onHWContinue,
+                ),
+              ],
+            );
           },
         ),
       ),
@@ -73,5 +74,9 @@ class _IntroductionPageState extends State<IntroductionPage> {
 
   void _getStarted() {
     _introductionBloc.add(UpdateCurrentIndex(index: 1));
+  }
+
+  void _onHWContinue() {
+    _introductionBloc.add(UpdateCurrentIndex(index: 2));
   }
 }

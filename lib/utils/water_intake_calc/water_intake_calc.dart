@@ -21,6 +21,16 @@ enum Climate {
   const Climate(this.factor);
 }
 
+enum HeightMetrics {
+  feet,
+  cm
+}
+
+enum WeightMetrics {
+  kg,
+  lbs
+}
+
 class WaterIntakeCalc {
 
   /// The height in cm.

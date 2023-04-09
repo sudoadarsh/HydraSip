@@ -11,3 +11,5 @@ class GetPageIndexState extends IntroductionState {
   final int index;
   GetPageIndexState({required this.index});
 }
+
+class MetricsToggledState extends IntroductionState {}

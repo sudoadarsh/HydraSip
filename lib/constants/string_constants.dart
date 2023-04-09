@@ -10,6 +10,6 @@ class StringC {
   static const String weight = 'WEIGHT';
   static const String enterAValue = 'Enter a value';
   static const String cont = 'CONTINUE';
-  static const String requestHW = 'We need your height and weight to calculate an estimate of water you must consume a day.';
-
+  static const String requestHW = 'To calculate an estimate of your daily water intake, we require your height and weight.';
+  static const String inches = 'Inches';
 }

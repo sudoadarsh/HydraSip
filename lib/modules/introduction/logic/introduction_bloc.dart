@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:hydra_sip/constants/constants.dart';
 import 'package:hydra_sip/utils/shared_pref.dart';
+import 'package:hydra_sip/utils/water_intake_calc/water_intake_calc.dart';
 import 'package:meta/meta.dart';
 
 part 'introduction_event.dart';
@@ -10,6 +11,10 @@ part 'introduction_event.dart';
 part 'introduction_state.dart';
 
 class IntroductionBloc extends Bloc<IntroductionEvent, IntroductionState> {
+
+  HeightMetrics heightMetric = HeightMetrics.feet;
+  WeightMetrics weightMetrics = WeightMetrics.kg;
+
   IntroductionBloc() : super(IntroductionInitial()) {
     /// To get the saved index of the latest page.
     on<GetCurrentPageEvent>((event, emit) {
@@ -22,6 +27,16 @@ class IntroductionBloc extends Bloc<IntroductionEvent, IntroductionState> {
     on<UpdateCurrentIndex>((event, emit) async {
       emit(GetPageIndexState(index: event.index));
       await _updateCurrentIndex(event.index);
+    });
+
+    /// To toggle the metrics.
+    on<ToggleMetricsEvent>((event, emit) {
+      if (event.metric is HeightMetrics) {
+        heightMetric = event.metric;
+      } else {
+        weightMetrics = event.metric;
+      }
+      emit(MetricsToggledState());
     });
   }
 
