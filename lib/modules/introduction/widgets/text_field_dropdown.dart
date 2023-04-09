@@ -7,11 +7,12 @@ class TextFieldDropdown<T> extends StatelessWidget {
     required this.controller,
     required this.items,
     required this.onChanged,
-    this.dropdownValue,
+    this.dropdownValue, this.inchController,
   }) : super(key: key);
 
   final String hintText;
   final TextEditingController controller;
+  final TextEditingController? inchController;
   final List<DropdownMenuItem<T>> items;
   final Function(T?) onChanged;
   final T? dropdownValue;
@@ -23,6 +24,7 @@ class TextFieldDropdown<T> extends StatelessWidget {
         Expanded(
           flex: 4,
           child: TextFormField(
+            controller: controller,
             decoration: InputDecoration(
               hintText: hintText,
             ),
@@ -33,6 +35,7 @@ class TextFieldDropdown<T> extends StatelessWidget {
           Expanded(
             flex: 1,
             child: TextFormField(
+              controller: inchController,
               decoration: const InputDecoration(
                 hintText: StringC.inches,
               ),

@@ -4,11 +4,12 @@ class ActivityPage extends StatelessWidget {
   const ActivityPage({
     Key? key,
     required this.bloc,
-    required this.onActivityContinue,
+    required this.onActivityContinue, required this.onActivityBack,
   }) : super(key: key);
 
   final IntroductionBloc bloc;
   final VoidCallback onActivityContinue;
+  final VoidCallback onActivityBack;
 
   @override
   Widget build(BuildContext context) {
@@ -69,9 +70,16 @@ class ActivityPage extends StatelessWidget {
         Positioned(
           bottom: 20,
           left: 10,
+          child: ElevatedButton(
+            onPressed: onActivityBack,
+            child: const ASText(StringC.back),
+          ),
+        ),
+        Positioned(
+          bottom: 20,
           right: 10,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: onActivityContinue,
             child: const ASText(StringC.cont),
           ),
         ),

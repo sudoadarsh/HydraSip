@@ -14,3 +14,8 @@ class ToggleMetricsEvent<T> extends IntroductionEvent {
   final T? metric;
   ToggleMetricsEvent({required this.metric});
 }
+
+class ValidateFormEvent extends IntroductionEvent {
+  final List<TextEditingController> controllers;
+  ValidateFormEvent({required this.controllers});
+}

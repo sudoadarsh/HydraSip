@@ -18,3 +18,8 @@ class UpdateIndexState extends IntroductionState {
 }
 
 class MetricsToggledState extends IntroductionState {}
+
+class FormValidationState extends IntroductionState {
+  final bool proceed;
+  FormValidationState({required this.proceed});
+}

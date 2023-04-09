@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:hydra_sip/constants/constants.dart';
 import 'package:hydra_sip/utils/shared_pref.dart';
 import 'package:hydra_sip/utils/water_intake_calc/water_intake_calc.dart';
@@ -16,6 +17,7 @@ class IntroductionBloc extends Bloc<IntroductionEvent, IntroductionState> {
   WeightMetrics weightMetrics = WeightMetrics.kg;
   Activity activity = Activity.moderately;
   Climate climate = Climate.hotAndDry;
+  bool formValidation = false;
 
   IntroductionBloc() : super(IntroductionInitial()) {
     /// To get the saved index of the latest page.
@@ -48,6 +50,18 @@ class IntroductionBloc extends Bloc<IntroductionEvent, IntroductionState> {
           break;
       }
       emit(MetricsToggledState());
+    });
+
+    /// To validate the HW form.
+    on<ValidateFormEvent>((event, emit) {
+      formValidation = true;
+      for (TextEditingController controller in event.controllers) {
+        if (controller.text.isEmpty) {
+          formValidation = false;
+          break;
+        }
+      }
+      emit(FormValidationState(proceed: formValidation));
     });
   }
 
