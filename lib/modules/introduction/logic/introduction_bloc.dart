@@ -66,10 +66,10 @@ class IntroductionBloc extends Bloc<IntroductionEvent, IntroductionState> {
   }
 
   int _getCurrentIndex() {
-    return SharedPref.instance.getInt(KeyConstants.pageIndex) ?? 0;
+    return SharedPref.getInt(KeyConstants.pageIndex) ?? 0;
   }
 
   Future<bool?> _updateCurrentIndex(int i) async {
-    return await SharedPref.instance.setValue(i, KeyConstants.pageIndex);
+    return await SharedPref.setValue(i, KeyConstants.pageIndex);
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydra_sip/constants/constants.dart';
 import 'package:hydra_sip/modules/introduction/logic/introduction_bloc.dart';
 import 'package:hydra_sip/modules/introduction/widgets/intro_page_widgets.dart';
+import 'package:hydra_sip/utils/routing/generate_route.dart';
 
 class IntroductionPage extends StatefulWidget {
   const IntroductionPage({Key? key}) : super(key: key);
@@ -94,6 +95,12 @@ class _IntroductionPageState extends State<IntroductionPage> {
                   onActivityContinue: _onActivityContinue,
                   onActivityBack: _onActivityBack,
                 ),
+                // 3. Climate Page.
+                ClimatePage(
+                  bloc: _introductionBloc,
+                  onClimateBack: _climateBack,
+                  onClimateContinue: _climateContinue,
+                ),
               ],
             );
           },
@@ -109,6 +116,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
   }
 
   void _onHWContinue() {
+    FocusScope.of(context).unfocus();
     _introductionBloc.add(UpdateCurrentIndex(index: 2));
   }
 
@@ -118,5 +126,15 @@ class _IntroductionPageState extends State<IntroductionPage> {
 
   void _onActivityBack() {
     _introductionBloc.add(UpdateCurrentIndex(index: 1));
+  }
+
+  void _climateContinue() {
+    Navigator.of(context).pushNamedAndRemoveUntil(RouteConstants.home, (route) {
+      return false;
+    });
+  }
+
+  void _climateBack() {
+    _introductionBloc.add(UpdateCurrentIndex(index: 2));
   }
 }

@@ -70,7 +70,7 @@ class ActivityPage extends StatelessWidget {
         Positioned(
           bottom: 20,
           left: 10,
-          child: ElevatedButton(
+          child: OutlinedButton(
             onPressed: onActivityBack,
             child: const ASText(StringC.back),
           ),

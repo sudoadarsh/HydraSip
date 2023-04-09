@@ -3,8 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydra_sip/constants/constants.dart';
 import 'package:hydra_sip/logic/theme/theme_cubit.dart';
 import 'package:hydra_sip/utils/routing/generate_route.dart';
+import 'package:hydra_sip/utils/shared_pref.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPref.init();
   runApp(const Root());
 }
 

@@ -13,7 +13,7 @@ class ThemeCubit extends Cubit<ThemeState> {
   /// This shall be called when the settings page is accessed.
   void getActiveTheme() async {
     if (activeTheme != null) return;
-    activeTheme = SharedPref.instance.getBool(KeyConstants.appTheme);
+    activeTheme = SharedPref.getBool(KeyConstants.appTheme);
   }
 
   /// To toggle theme.

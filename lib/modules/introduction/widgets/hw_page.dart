@@ -7,7 +7,8 @@ class HwPage extends StatelessWidget {
     required this.heightController,
     required this.bloc,
     required this.onHWContinue,
-    required this.inchController, required this.proceed,
+    required this.inchController,
+    required this.proceed,
     required this.formKey,
   }) : super(key: key);
 
@@ -78,8 +79,10 @@ class HwPage extends StatelessWidget {
                 SizeC.spaceVertical20,
 
                 // The weight input field.
-                ASText(StringC.weight,
-                    style: Theme.of(context).textTheme.bodySmall),
+                ASText(
+                  StringC.weight,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
                 TextFieldDropdown<WeightMetrics>(
                   hintText: bloc.weightMetrics.name,
                   controller: weightController,

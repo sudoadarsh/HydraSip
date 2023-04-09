@@ -3,8 +3,9 @@ import 'package:hydra_sip/modules/dashboard/dashboard.dart';
 import 'package:hydra_sip/modules/introduction/introduction_page.dart';
 
 class RouteConstants {
-  static const String dashboard = 'dashboard';
-  static const String introduction = 'introduction';
+  static const String dashboard = '/dashboard';
+  static const String introduction = '/introduction';
+  static const String home = '/home';
 }
 
 class GenerateRoute {

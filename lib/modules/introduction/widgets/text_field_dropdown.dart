@@ -7,7 +7,8 @@ class TextFieldDropdown<T> extends StatelessWidget {
     required this.controller,
     required this.items,
     required this.onChanged,
-    this.dropdownValue, this.inchController,
+    this.dropdownValue,
+    this.inchController,
   }) : super(key: key);
 
   final String hintText;
@@ -24,7 +25,12 @@ class TextFieldDropdown<T> extends StatelessWidget {
         Expanded(
           flex: 4,
           child: TextFormField(
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             controller: controller,
+            textInputAction: TextInputAction.next,
+            keyboardType: Platform.isAndroid
+                ? TextInputType.number
+                : const TextInputType.numberWithOptions(),
             decoration: InputDecoration(
               hintText: hintText,
             ),
@@ -33,9 +39,12 @@ class TextFieldDropdown<T> extends StatelessWidget {
         if (dropdownValue == HeightMetrics.feet) ...[
           SizeC.spaceHorizontal5,
           Expanded(
-            flex: 1,
             child: TextFormField(
               controller: inchController,
+              textInputAction: TextInputAction.next,
+              keyboardType: Platform.isAndroid
+                  ? TextInputType.number
+                  : const TextInputType.numberWithOptions(),
               decoration: const InputDecoration(
                 hintText: StringC.inches,
               ),
@@ -43,14 +52,12 @@ class TextFieldDropdown<T> extends StatelessWidget {
           ),
         ],
         SizeC.spaceHorizontal5,
-        Expanded(
-          child: DropdownButtonHideUnderline(
-            child: DropdownButton<T>(
-              items: items,
-              onChanged: onChanged,
-              value: dropdownValue,
-              dropdownColor: Theme.of(context).scaffoldBackgroundColor,
-            ),
+        DropdownButtonHideUnderline(
+          child: DropdownButton<T>(
+            items: items,
+            onChanged: onChanged,
+            value: dropdownValue,
+            dropdownColor: Theme.of(context).scaffoldBackgroundColor,
           ),
         ),
       ],
