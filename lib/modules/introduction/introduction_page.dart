@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydra_sip/constants/constants.dart';
 import 'package:hydra_sip/modules/introduction/logic/introduction_bloc.dart';
 import 'package:hydra_sip/modules/introduction/widgets/intro_page_widgets.dart';
 
@@ -51,8 +52,15 @@ class _IntroductionPageState extends State<IntroductionPage> {
               return const Center(child: CircularProgressIndicator.adaptive());
             } else if (state is GetPageIndexState) {
               _pageViewController = PageController(initialPage: state.index);
+            } else if (state is UpdateIndexState) {
+              _pageViewController.animateToPage(
+                state.index,
+                duration: DateTimeC.cd500ms,
+                curve: Curves.easeIn,
+              );
             }
             return PageView(
+              physics: const NeverScrollableScrollPhysics(),
               controller: _pageViewController,
               children: [
                 GetStartedPage(onGetStarted: _getStarted),
