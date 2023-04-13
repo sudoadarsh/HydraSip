@@ -19,8 +19,13 @@ class StringC {
   static const String moderatelyActive = 'Moderately active (3-5 days of exercise per week)';
   static const String veryActive = 'Very active (6-7 days of exercise per week)';
   static const String extremeActive = 'Extremely active (very intense exercise or physical job)';
-  static const String requestClimate = 'Please grant us permission to access your location in order to retrieve the current weather.';
+  static const String requestClimate = 'What is the typical climate of your location?';
   static const String grant = 'GRANT PERMISSION';
   static const String deny = 'Deny';
   static const String confirmLocation = 'Are you sure you want to exclude climate when calculating your daily water intake?';
+  static const String weather = 'WEATHER';
+  static const String temperate = 'Temperate';
+  static const String hotAndDry = 'Hot and Dry';
+  static const String hotAndHumid = 'High temperatures with high humidity. You also sweat a bucket.';
+  static const String cold = 'Cold';
 }

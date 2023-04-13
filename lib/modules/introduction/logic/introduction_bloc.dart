@@ -5,10 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:hydra_sip/constants/constants.dart';
 import 'package:hydra_sip/utils/shared_pref.dart';
 import 'package:hydra_sip/utils/water_intake_calc/water_intake_calc.dart';
-import 'package:meta/meta.dart';
 
 part 'introduction_event.dart';
-
 part 'introduction_state.dart';
 
 class IntroductionBloc extends Bloc<IntroductionEvent, IntroductionState> {

@@ -49,6 +49,12 @@ class ThemeC {
     // Background color.
     scaffoldBackgroundColor: Colors.blueGrey[900],
 
+    // The app bar theme.
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.transparent,
+      elevation: 0.0
+    ),
+
     // The color scheme.
     colorScheme: const ColorScheme.dark(
       primary: Colors.lightBlue,

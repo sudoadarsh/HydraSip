@@ -34,6 +34,33 @@ class ClimatePage extends StatelessWidget {
                   ),
                 ],
               ),
+              SizeC.spaceVertical20,
+              Column(
+                children: Climate.values.map((e) {
+                  String title;
+                  switch (e) {
+                    case Climate.temperate:
+                      title = StringC.temperate;
+                      break;
+                    case Climate.hotAndDry:
+                      title = StringC.hotAndDry;
+                      break;
+                    case Climate.hotAndHumid:
+                      title = StringC.hotAndHumid;
+                      break;
+                    case Climate.cold:
+                      title = StringC.cold;
+                      break;
+                  }
+                  return RadioListTile(
+                    value: e,
+                    title: ASText(title),
+                    groupValue: bloc.climate,
+                    onChanged: (value) =>
+                        bloc.add(ToggleMetricsEvent<Climate>(metric: value)),
+                  );
+                }).toList(),
+              ),
             ],
           ),
         ),
@@ -49,51 +76,11 @@ class ClimatePage extends StatelessWidget {
           bottom: 20,
           right: 10,
           child: ElevatedButton(
-            onPressed: () async {
-              PermissionStatus status =
-                  await OpenWeatherUtil.requestPermission();
-              if (!status.isGranted) {
-                // ignore: use_build_context_synchronously
-                _confirm(context);
-                return;
-              }
-              onClimateContinue();
-            },
+            onPressed: onClimateContinue,
             child: const ASText(StringC.cont),
           ),
         ),
       ],
-    );
-  }
-
-  /// Dialog to confirm the user selection.
-  void _confirm(BuildContext context) async {
-    await showDialog(
-      context: context,
-      builder: (_) {
-        return AlertDialog(
-          title: const ASText(StringC.appName),
-          content: const Text(StringC.confirmLocation),
-          actions: [
-            TextButton(
-              onPressed: () async {
-                PermissionStatus status =
-                    await OpenWeatherUtil.requestPermission();
-                if (status.isGranted) {
-                  // Move to Next page.
-                  onClimateContinue();
-                } else if (status.isPermanentlyDenied) {
-                  AppSettings.openLocationSettings();
-                }
-                // ignore: use_build_context_synchronously
-                Navigator.of(context).pop();
-              },
-              child: const ASText(StringC.grant),
-            ),
-            ElevatedButton(onPressed: () {}, child: const Text(StringC.cont)),
-          ],
-        );
-      },
     );
   }
 }

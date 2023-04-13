@@ -20,10 +20,11 @@ class Root extends StatelessWidget {
       create: (context) => ThemeCubit(),
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
+          int? index = SharedPref.getInt(KeyConstants.pageIndex);
           return MaterialApp(
             theme: state.appTheme ? ThemeC.lightTheme : ThemeC.darkTheme,
             onGenerateRoute: GenerateRoute.generate,
-            initialRoute: RouteConstants.introduction,
+            initialRoute: index == 4 ? RouteC.home : RouteC.intro,
           );
         },
       ),

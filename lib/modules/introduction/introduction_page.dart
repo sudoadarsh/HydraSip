@@ -129,7 +129,8 @@ class _IntroductionPageState extends State<IntroductionPage> {
   }
 
   void _climateContinue() {
-    Navigator.of(context).pushNamedAndRemoveUntil(RouteConstants.home, (route) {
+    _introductionBloc.add(UpdateCurrentIndex(index: 4));
+    Navigator.of(context).pushNamedAndRemoveUntil(RouteC.home, (route) {
       return false;
     });
   }
