@@ -25,7 +25,7 @@ class SharedPref {
       case String:
         res = await _pref.setString(key, value);
         return res;
-      case Bool:
+      case bool:
         res = await _pref.setBool(key, value);
         return res;
       case List<String>:
