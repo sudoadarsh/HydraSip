@@ -23,3 +23,8 @@ class FormValidationState extends IntroductionState {
   final bool proceed;
   FormValidationState({required this.proceed});
 }
+
+class CalcDmLoadedState extends IntroductionState {
+  final CalcDm calcDm;
+  CalcDmLoadedState({required this.calcDm});
+}

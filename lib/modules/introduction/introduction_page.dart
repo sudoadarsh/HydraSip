@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydra_sip/constants/constants.dart';
+import 'package:hydra_sip/models/calc_dm.dart';
 import 'package:hydra_sip/modules/introduction/logic/introduction_bloc.dart';
 import 'package:hydra_sip/modules/introduction/widgets/intro_page_widgets.dart';
 import 'package:hydra_sip/utils/routing/generate_route.dart';
+import 'package:hydra_sip/utils/water_intake_calc/water_intake_calc.dart';
 
 class IntroductionPage extends StatefulWidget {
   const IntroductionPage({Key? key}) : super(key: key);
@@ -72,6 +74,8 @@ class _IntroductionPageState extends State<IntroductionPage> {
               );
             } else if (state is FormValidationState) {
               proceed = state.proceed;
+            } else if (state is CalcDmLoadedState) {
+              _prefillData(state);
             }
             return PageView(
               physics: const NeverScrollableScrollPhysics(),
@@ -115,13 +119,32 @@ class _IntroductionPageState extends State<IntroductionPage> {
     _introductionBloc.add(UpdateCurrentIndex(index: 1));
   }
 
-  void _onHWContinue() {
+  void _onHWContinue() async {
     FocusScope.of(context).unfocus();
     _introductionBloc.add(UpdateCurrentIndex(index: 2));
+
+    // Murican metrics.
+    _introductionBloc.calcDm = _introductionBloc.calcDm.copyWith(
+      height: Height(
+        inch: _inchController.text,
+        cm: _heightController.text,
+        foot: _heightController.text,
+        murican: _inchController.text.isNotEmpty,
+      ),
+      weight: Weight(
+        kg: _weightController.text,
+        lbs: _weightController.text,
+        innit: _introductionBloc.weightMetrics == WeightMetrics.lbs,
+      ),
+    );
+    _introductionBloc.add(UpdateCalcDmEvent());
   }
 
   void _onActivityContinue() {
     _introductionBloc.add(UpdateCurrentIndex(index: 3));
+    _introductionBloc.calcDm = _introductionBloc.calcDm
+        .copyWith(activity: _introductionBloc.activity.index);
+    _introductionBloc.add(UpdateCalcDmEvent());
   }
 
   void _onActivityBack() {
@@ -130,6 +153,9 @@ class _IntroductionPageState extends State<IntroductionPage> {
 
   void _climateContinue() {
     _introductionBloc.add(UpdateCurrentIndex(index: 4));
+    _introductionBloc.calcDm = _introductionBloc.calcDm
+        .copyWith(climate: _introductionBloc.climate.index);
+    _introductionBloc.add(UpdateCalcDmEvent());
     Navigator.of(context).pushNamedAndRemoveUntil(RouteC.home, (route) {
       return false;
     });
@@ -137,5 +163,22 @@ class _IntroductionPageState extends State<IntroductionPage> {
 
   void _climateBack() {
     _introductionBloc.add(UpdateCurrentIndex(index: 2));
+  }
+
+  void _prefillData(CalcDmLoadedState state) {
+    if (state.calcDm.height?.murican ?? false) {
+      _heightController.text = state.calcDm.height?.foot ?? '';
+      _inchController.text = state.calcDm.height?.inch ?? '';
+    } else {
+      _heightController.text = state.calcDm.height?.cm ?? '';
+      _introductionBloc.heightMetric = HeightMetrics.cm;
+    }
+    if (state.calcDm.weight?.innit ?? false) {
+      _introductionBloc.weightMetrics = WeightMetrics.lbs;
+      _weightController.text = state.calcDm.weight?.lbs ?? '';
+    }
+    _weightController.text = state.calcDm.weight?.kg ?? '';
+    _introductionBloc.activity = Activity.values[state.calcDm.activity ?? 0];
+    _introductionBloc.climate = Climate.values[state.calcDm.climate ?? 0];
   }
 }

@@ -12,3 +12,4 @@ part 'climate_page.dart';
 part 'get_started_page.dart';
 part 'hw_page.dart';
 part 'text_field_dropdown.dart';
+part 'calculation_page.dart';
