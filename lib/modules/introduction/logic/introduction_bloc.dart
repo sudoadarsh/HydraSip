@@ -51,8 +51,6 @@ class IntroductionBloc extends Bloc<IntroductionEvent, IntroductionState> {
       emit(LoadingPageState());
       int index = _getCurrentIndex();
       emit(GetPageIndexState(index: index));
-      await Future.delayed(const Duration(milliseconds: 500));
-      add(GetCalcDmEvent());
     });
 
     /// To save the current index of the page locally.

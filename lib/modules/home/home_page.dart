@@ -18,6 +18,7 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
     _homeBloc = HomeBloc();
+    _homeBloc.add(CalculateSipsE());
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
@@ -39,9 +40,7 @@ class _HomePageState extends State<HomePage>
         child: Stack(
           alignment: Alignment.center,
           children: [
-
             const Positioned.fill(child: Icon(Icons.face)),
-
             // Water Animation.
             Positioned(
               bottom: 0,
@@ -55,11 +54,15 @@ class _HomePageState extends State<HomePage>
                     child: CustomPaint(
                       painter: WaterPainter(
                         _animationController.value,
-                        waveColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                        waveColor: Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withOpacity(0.1),
                       ),
                     ),
                   );
-                }, animation: _animationController,
+                },
+                animation: _animationController,
               ),
             ),
           ],

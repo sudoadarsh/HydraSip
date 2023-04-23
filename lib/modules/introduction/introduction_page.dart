@@ -143,7 +143,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
   void _onActivityContinue() {
     _introductionBloc.add(UpdateCurrentIndex(index: 3));
     _introductionBloc.calcDm = _introductionBloc.calcDm
-        .copyWith(activity: _introductionBloc.activity.index);
+        .copyWith(activity: _introductionBloc.activity.factor.round());
     _introductionBloc.add(UpdateCalcDmEvent());
   }
 
@@ -154,7 +154,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
   void _climateContinue() {
     _introductionBloc.add(UpdateCurrentIndex(index: 4));
     _introductionBloc.calcDm = _introductionBloc.calcDm
-        .copyWith(climate: _introductionBloc.climate.index);
+        .copyWith(climate: _introductionBloc.climate.factor.round());
     _introductionBloc.add(UpdateCalcDmEvent());
     Navigator.of(context).pushNamedAndRemoveUntil(RouteC.home, (route) {
       return false;

@@ -11,4 +11,5 @@ class KeyConstants {
   static const String id = 'id';
   static const String idName = 'calc_data';
   static const String value = 'value';
+  static const String sips = 'sips';
 }
